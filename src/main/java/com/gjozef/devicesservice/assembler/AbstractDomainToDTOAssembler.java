@@ -18,13 +18,7 @@ public abstract class AbstractDomainToDTOAssembler<T extends AbstractDeviceServi
         return dto;
     }
 
-    /**
-     * Fills-in DTO with values from domain object. Any already filled-in values will be replaced (possibly with nulls).
-     */
     protected abstract void fillInDto(T domain, S dto);
 
-    /**
-     * Creates an empty instance of DTO that will be used later by fillInDto() method.
-     */
     protected abstract S createEmptyDto();
 }

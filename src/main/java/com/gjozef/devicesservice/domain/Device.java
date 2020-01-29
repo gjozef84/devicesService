@@ -28,7 +28,7 @@ public class Device extends AbstractDeviceServiceEntity {
     @JoinColumn(name = "id_device_category")
     private DeviceCategory deviceCategory;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private DeviceStatus deviceStatus;
+    private DeviceStatus deviceStatus = DeviceStatus.SPRAWNY;
 }
