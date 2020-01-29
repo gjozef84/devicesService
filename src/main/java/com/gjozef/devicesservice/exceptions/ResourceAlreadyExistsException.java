@@ -1,5 +1,8 @@
 package com.gjozef.devicesservice.exceptions;
 
+import lombok.Data;
+
+@Data
 public class ResourceAlreadyExistsException extends RuntimeException {
 
     private final String objectName;

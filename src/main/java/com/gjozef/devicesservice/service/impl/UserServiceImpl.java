@@ -26,13 +26,13 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final UserDTOAssembler userDTOAssembler;
     private final UserRequestAssembler userRequestAssembler;
 
     @Override
     public Optional<User> findByUsername(String userName) {
-        return userRepository.findByUsernameIgnoreCase(userName);
+        return userRepository.findByUsername(userName);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         isExistsEmail(userRequest);
         User user = new User();
         userRequestAssembler.fillInDomain(userRequest, user);
-        user.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
+        user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 
         log.info("Saving user = {}", user);
         return userDTOAssembler.fromDomain(userRepository.save(user));
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
         isExistsEmail(userRequest);
         User user = fetchUser(userId);
         userRequestAssembler.fillInDomain(userRequest, user);
-        user.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
+        user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 
         userRepository.save(user);
     }

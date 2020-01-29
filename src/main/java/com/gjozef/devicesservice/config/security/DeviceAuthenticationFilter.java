@@ -1,7 +1,7 @@
 package com.gjozef.devicesservice.config.security;
 
 import com.gjozef.devicesservice.domain.User;
-import com.gjozef.devicesservice.service.UserService;
+import com.gjozef.devicesservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +22,7 @@ public class DeviceAuthenticationFilter extends OncePerRequestFilter {
 
     public static final String AUTHORIZATION_HEADER = "X-";
 
-    private final UserService userService;
+    private final UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest req,
@@ -37,7 +37,7 @@ public class DeviceAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private Optional<Authentication> getAuthenticationFor(String username) {
-        return userService.findByUsername(username)
+        return userRepository.findByUsername(username)
             .map(this::createAuthentication);
     }
 

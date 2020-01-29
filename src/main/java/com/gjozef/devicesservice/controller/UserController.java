@@ -4,7 +4,7 @@ import com.gjozef.devicesservice.controller.swagger.UserControllerSwagger;
 import com.gjozef.devicesservice.dto.UserListDTO;
 import com.gjozef.devicesservice.dto.request.UserRequestDTO;
 import com.gjozef.devicesservice.dto.response.UserDTO;
-import com.gjozef.devicesservice.service.UserService;
+import com.gjozef.devicesservice.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController implements UserControllerSwagger {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @Override
     @PostMapping
