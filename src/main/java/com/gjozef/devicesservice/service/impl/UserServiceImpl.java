@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO saveUser(UserRequestDTO userRequest) {
-        isExistsUserName(userRequest);
-        isExistsEmail(userRequest);
+        isExistsUserNameForSave(userRequest);
+        isExistsEmailForSave(userRequest);
         User user = new User();
         userRequestAssembler.fillInDomain(userRequest, user);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void editUser(Long userId, UserRequestDTO userRequest) {
         log.info("editUser() userId={} for userRequest={}", userId, userRequest);
-        isExistsUserName(userRequest);
-        isExistsEmail(userRequest);
+        isExistsUserName(userRequest, userId);
+        isExistsEmail(userRequest, userId);
         User user = fetchUser(userId);
         userRequestAssembler.fillInDomain(userRequest, user);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
@@ -90,13 +90,25 @@ public class UserServiceImpl implements UserService {
             .orElseThrow(() -> new ResourceNotFoundException(User.class, "id", userId.toString()));
     }
 
-    private void isExistsEmail(UserRequestDTO userRequest) {
+    private void isExistsEmail(UserRequestDTO userRequest, Long userId) {
+        if (userRepository.existsByEmailAndIdIsNotAndActiveTrue(userRequest.getEmail(), userId)) {
+            throw new ResourceAlreadyExistsException(User.class, "email", userRequest.getEmail());
+        }
+    }
+
+    private void isExistsUserName(UserRequestDTO userRequest, Long userId) {
+        if (userRepository.existsByUsernameAndIdIsNotAndActiveTrue(userRequest.getUserName(), userId)) {
+            throw new ResourceAlreadyExistsException(User.class, "userName", userRequest.getUserName());
+        }
+    }
+
+    private void isExistsEmailForSave(UserRequestDTO userRequest) {
         if (userRepository.existsByEmailAndActiveTrue(userRequest.getEmail())) {
             throw new ResourceAlreadyExistsException(User.class, "email", userRequest.getEmail());
         }
     }
 
-    private void isExistsUserName(UserRequestDTO userRequest) {
+    private void isExistsUserNameForSave(UserRequestDTO userRequest) {
         if (userRepository.existsByUsernameAndActiveTrue(userRequest.getUserName())) {
             throw new ResourceAlreadyExistsException(User.class, "userName", userRequest.getUserName());
         }
