@@ -1,9 +1,9 @@
 package com.gjozef.devicesservice.controller;
 
 import com.gjozef.devicesservice.controller.swagger.UserControllerSwagger;
-import com.gjozef.devicesservice.dto.UserListDTO;
 import com.gjozef.devicesservice.dto.request.UserRequestDTO;
 import com.gjozef.devicesservice.dto.response.UserDTO;
+import com.gjozef.devicesservice.dto.response.UserListDTO;
 import com.gjozef.devicesservice.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -2,6 +2,7 @@ package com.gjozef.devicesservice.controller;
 
 import com.gjozef.devicesservice.controller.swagger.DeviceServiceControllerSwagger;
 import com.gjozef.devicesservice.dto.request.DeviceRequestDTO;
+import com.gjozef.devicesservice.dto.request.ParameterRequestDTO;
 import com.gjozef.devicesservice.dto.response.DeviceDTO;
 import com.gjozef.devicesservice.dto.response.DeviceListDTO;
 import com.gjozef.devicesservice.service.DeviceService;
@@ -42,6 +43,18 @@ public class DeviceServiceController implements DeviceServiceControllerSwagger {
     @PostMapping
     public ResponseEntity<DeviceDTO> addDevice(@RequestBody @Valid DeviceRequestDTO deviceRequestDTO) {
         return new ResponseEntity<>(deviceService.addDevice(deviceRequestDTO), HttpStatus.OK);
+    }
+
+    @Override
+    @PostMapping("/{deviceId}/param")
+    public ResponseEntity<DeviceParamsDTO> addParamToDevice(@PathVariable Long deviceId, @RequestBody @Valid ParameterRequestDTO paramRequest) {
+        return new ResponseEntity<DeviceParamsDTO>(deviceService.addParamToDevice(deviceId, paramRequest));
+    }
+
+    @Override
+    @GetMapping("/{deviceId}/param/all")
+    public ResponseEntity<DeviceParamsListDTO> getAllDeviceParams(@PathVariable Long deviceId) {
+        return new ResponseEntity<DeviceParamsListDTO>(deviceService.getAllDeviceParams(deviceId));
     }
 
     @Override
