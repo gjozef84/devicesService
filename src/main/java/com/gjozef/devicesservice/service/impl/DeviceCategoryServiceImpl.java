@@ -73,7 +73,7 @@ public class DeviceCategoryServiceImpl implements DeviceCategoryService {
     }
 
     private DeviceCategory fetchCategory(Long categoryId) {
-        return categoryRepository.findById(categoryId)
+        return categoryRepository.findByIdAndActiveTrue(categoryId)
             .orElseThrow(() -> new ResourceNotFoundException(DeviceCategory.class, "id", categoryId.toString()));
     }
 }

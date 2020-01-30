@@ -1,8 +1,8 @@
 package com.gjozef.devicesservice.controller.swagger;
 
-import com.gjozef.devicesservice.dto.UserListDTO;
 import com.gjozef.devicesservice.dto.request.UserRequestDTO;
 import com.gjozef.devicesservice.dto.response.UserDTO;
+import com.gjozef.devicesservice.dto.response.UserListDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

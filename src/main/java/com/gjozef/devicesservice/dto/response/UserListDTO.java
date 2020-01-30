@@ -1,7 +1,5 @@
-package com.gjozef.devicesservice.dto;
+package com.gjozef.devicesservice.dto.response;
 
-import com.gjozef.devicesservice.dto.response.AbstractListDTO;
-import com.gjozef.devicesservice.dto.response.UserDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

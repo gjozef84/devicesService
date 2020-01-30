@@ -1,9 +1,9 @@
 package com.gjozef.devicesservice.service;
 
 import com.gjozef.devicesservice.domain.User;
-import com.gjozef.devicesservice.dto.UserListDTO;
 import com.gjozef.devicesservice.dto.request.UserRequestDTO;
 import com.gjozef.devicesservice.dto.response.UserDTO;
+import com.gjozef.devicesservice.dto.response.UserListDTO;
 
 import java.util.Optional;
 

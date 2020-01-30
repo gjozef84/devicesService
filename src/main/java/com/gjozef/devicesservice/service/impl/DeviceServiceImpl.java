@@ -76,8 +76,8 @@ public class DeviceServiceImpl implements DeviceService {
         return new DeviceListDTO(devices);
     }
 
-    private Device fetchDevice(Long deviceId) {
-        return deviceRepository.findById(deviceId)
+    public Device fetchDevice(Long deviceId) {
+        return deviceRepository.findByIdAndActiveTrue(deviceId)
             .orElseThrow(() -> new ResourceNotFoundException(Device.class, "id", deviceId.toString()));
     }
 }

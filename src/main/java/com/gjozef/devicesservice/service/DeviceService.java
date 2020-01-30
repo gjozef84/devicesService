@@ -1,5 +1,6 @@
 package com.gjozef.devicesservice.service;
 
+import com.gjozef.devicesservice.domain.Device;
 import com.gjozef.devicesservice.dto.request.DeviceRequestDTO;
 import com.gjozef.devicesservice.dto.response.DeviceDTO;
 import com.gjozef.devicesservice.dto.response.DeviceListDTO;
@@ -16,4 +17,6 @@ public interface DeviceService {
     DeviceDTO addDevice(DeviceRequestDTO deviceRequestDTO);
 
     DeviceDTO editDevice(Long deviceId, DeviceRequestDTO deviceRequestDTO);
+
+    Device fetchDevice(Long deviceId);
 }
