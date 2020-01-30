@@ -6,6 +6,7 @@ import com.gjozef.devicesservice.domain.Parameter;
 import com.gjozef.devicesservice.dto.request.ParameterRequestDTO;
 import com.gjozef.devicesservice.dto.response.ParameterDTO;
 import com.gjozef.devicesservice.dto.response.ParameterListDTO;
+import com.gjozef.devicesservice.exceptions.ResourceAlreadyExistsException;
 import com.gjozef.devicesservice.exceptions.ResourceNotFoundException;
 import com.gjozef.devicesservice.repository.ParameterRepository;
 import com.gjozef.devicesservice.service.ParameterService;
@@ -48,6 +49,9 @@ public class ParameterServiceImpl implements ParameterService {
     @Override
     public ParameterDTO addParameter(ParameterRequestDTO requestDTO) {
         log.info("addParameter() using requestDTO={}", requestDTO);
+        if (parameterRepository.existsByNameAndActiveTrue(requestDTO.getName())) {
+            throw new ResourceAlreadyExistsException(Parameter.class, "name", requestDTO.getName());
+        }
         Parameter parameter = new Parameter();
         parameterRequestDTOAssembler.fillInDomain(requestDTO, parameter);
 
@@ -58,6 +62,9 @@ public class ParameterServiceImpl implements ParameterService {
     public ParameterDTO editParameter(Long parameterId, ParameterRequestDTO requestDTO) {
         log.info("editParameter() using requestDTO={}", requestDTO);
         Parameter parameter = fetchParameter(parameterId);
+        if (parameterRepository.existsByNameAndIdIsNotAndActiveTrue(requestDTO.getName(), parameter.getId())) {
+            throw new ResourceAlreadyExistsException(Parameter.class, "name", requestDTO.getName());
+        }
         parameterRequestDTOAssembler.fillInDomain(requestDTO, parameter);
 
         return parameterDTOAssembler.fromDomain(parameterRepository.save(parameter));
@@ -71,7 +78,8 @@ public class ParameterServiceImpl implements ParameterService {
         parameterRepository.save(parameter);
     }
 
-    private Parameter fetchParameter(Long parameterId) {
+    @Override
+    public Parameter fetchParameter(Long parameterId) {
         return parameterRepository.findByIdAndActiveTrue(parameterId)
             .orElseThrow(() -> new ResourceNotFoundException(Parameter.class, "id", parameterId.toString()));
     }

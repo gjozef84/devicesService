@@ -21,8 +21,9 @@ public class ParameterDTOAssemblerTest {
 
     @Test
     public void fillInDto() {
-        Parameter domain = new Parameter("paramName", "value");
-        ParameterDTO expected = new ParameterDTO(domain.getParamName(), domain.getValue());
+        Parameter domain = new Parameter("paramName");
+        domain.setId(1L);
+        ParameterDTO expected = new ParameterDTO(domain.getId(), domain.getName());
 
         ParameterDTO actual = parameterDTOAssembler.fromDomain(domain);
 

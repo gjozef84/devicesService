@@ -10,16 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "parameters")
+@Table(name = "parameter")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Parameter extends AbstractDeviceServiceEntity {
 
-    @Column(name = "param_name", nullable = false, unique = true)
-    private String paramName;
-
-    @Column(name = "value")
-    private String value;
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
 }

@@ -9,6 +9,7 @@ public class DeviceCategoryDTOAssembler extends AbstractDomainToDTOAssembler<Dev
 
     @Override
     protected void fillInDto(DeviceCategory domain, DeviceCategoryDTO dto) {
+        dto.setId(domain.getId());
         dto.setName(domain.getName());
     }
 

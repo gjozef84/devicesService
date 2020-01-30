@@ -20,7 +20,6 @@ public class ParameterRequestDTOAssembler implements DTOToDomainAssembler<Parame
 
     @Override
     public void fillInDomain(ParameterRequestDTO dto, Parameter domain) {
-        domain.setParamName(dto.getParamName());
-        domain.setValue(dto.getValue());
+        domain.setName(dto.getName());
     }
 }

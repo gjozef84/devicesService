@@ -25,6 +25,7 @@ public class DeviceRequestDTOAssembler implements DTOToDomainAssembler<Device, D
     @Override
     public void fillInDomain(DeviceRequestDTO dto, Device domain) {
         domain.setName(dto.getName());
+        domain.setDescription(dto.getDescription());
         domain.setDeviceCategory(deviceCategoryDTOAssembler.toDomain(dto.getDeviceCategory()));
         domain.setDeviceStatus(dto.getDeviceStatus());
     }

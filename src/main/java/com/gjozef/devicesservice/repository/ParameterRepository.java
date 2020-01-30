@@ -12,4 +12,8 @@ public interface ParameterRepository extends JpaRepository<Parameter, Long> {
     Optional<Parameter> findByIdAndActiveTrue(Long parameterId);
 
     List<Parameter> findAllByActiveTrue();
+
+    boolean existsByNameAndActiveTrue(String name);
+
+    boolean existsByNameAndIdIsNotAndActiveTrue(String name, Long id);
 }

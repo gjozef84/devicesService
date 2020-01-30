@@ -3,6 +3,7 @@ package com.gjozef.devicesservice.service.impl;
 import com.gjozef.devicesservice.assembler.DeviceDTOAssembler;
 import com.gjozef.devicesservice.assembler.DeviceRequestDTOAssembler;
 import com.gjozef.devicesservice.domain.Device;
+import com.gjozef.devicesservice.domain.DeviceStatus;
 import com.gjozef.devicesservice.dto.request.DeviceRequestDTO;
 import com.gjozef.devicesservice.dto.response.DeviceDTO;
 import com.gjozef.devicesservice.dto.response.DeviceListDTO;
@@ -76,6 +77,16 @@ public class DeviceServiceImpl implements DeviceService {
         return new DeviceListDTO(devices);
     }
 
+    @Override
+    public DeviceDTO changeStatus(Long deviceId, DeviceStatus deviceStatus) {
+        log.info("changeStatus() deviceId={}, deviceStatus={}", deviceId, deviceStatus);
+        Device device = fetchDevice(deviceId);
+        device.setDeviceStatus(deviceStatus);
+
+        return deviceDTOAssembler.fromDomain(deviceRepository.save(device));
+    }
+
+    @Override
     public Device fetchDevice(Long deviceId) {
         return deviceRepository.findByIdAndActiveTrue(deviceId)
             .orElseThrow(() -> new ResourceNotFoundException(Device.class, "id", deviceId.toString()));

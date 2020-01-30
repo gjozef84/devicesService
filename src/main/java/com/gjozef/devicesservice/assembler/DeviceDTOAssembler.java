@@ -13,7 +13,9 @@ public class DeviceDTOAssembler extends AbstractDomainToDTOAssembler<Device, Dev
 
     @Override
     protected void fillInDto(Device domain, DeviceDTO dto) {
+        dto.setId(domain.getId());
         dto.setName(domain.getName());
+        dto.setDescription(domain.getDescription());
         dto.setDeviceCategory(deviceCategoryDTOAssembler.fromDomain(domain.getDeviceCategory()));
         dto.setDeviceStatus(domain.getDeviceStatus());
     }
