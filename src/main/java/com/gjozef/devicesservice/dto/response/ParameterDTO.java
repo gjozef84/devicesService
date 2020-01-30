@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ParameterDTO implements AbstractDTO {
-
+    private Long id;
     private String paramName;
-    private String value;
 }

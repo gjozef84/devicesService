@@ -5,13 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class DeviceCategoryDTO implements AbstractDTO {
-    private Long id;
-    @NotNull
-    private String name;
+public class DeviceParamsDTO implements AbstractDTO {
+    private DeviceDTO deviceDTO;
+    private ParameterDTO parameterDTO;
+    private String value;
 }

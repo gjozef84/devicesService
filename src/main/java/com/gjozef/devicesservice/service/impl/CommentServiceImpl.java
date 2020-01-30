@@ -30,7 +30,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public CommentListDTO getDeviceComments(Long deviceId) {
         log.info("getDeviceComments() deviceId={}", deviceId);
-        List<Comment> deviceComments = commentRepository.findAllByDeviceIdAndActiveTrue();
+        List<Comment> deviceComments = commentRepository.findAllByDeviceIdAndActiveTrue(deviceId);
         if (CollectionUtils.isNotEmpty(deviceComments)) {
             return new CommentListDTO(deviceComments.stream()
                 .map(commentDTOAssembler::fromDomain)
@@ -72,7 +72,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     private Comment fetchComment(Long deviceId, Long commentId) {
-        return commentRepository.findByIdAndDeviceIdAndActiveTrue(deviceId, commentId)
+        return commentRepository.findByIdAndDeviceIdAndActiveTrue(commentId, deviceId)
             .orElseThrow(() -> new ResourceNotFoundException(Comment.class, "id", commentId.toString()));
     }
 }

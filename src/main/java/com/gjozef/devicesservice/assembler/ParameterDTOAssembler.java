@@ -9,8 +9,8 @@ public class ParameterDTOAssembler extends AbstractDomainToDTOAssembler<Paramete
 
     @Override
     protected void fillInDto(Parameter domain, ParameterDTO dto) {
-        dto.setParamName(domain.getParamName());
-        dto.setValue(domain.getValue());
+        dto.setId(domain.getId());
+        dto.setParamName(domain.getName());
     }
 
     @Override

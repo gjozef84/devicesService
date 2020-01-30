@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ParameterRequestDTO implements AbstractDTO {
+public class ParameterValueRequestDTO implements AbstractDTO {
     @NotBlank
-    private String name;
+    private String value;
 }

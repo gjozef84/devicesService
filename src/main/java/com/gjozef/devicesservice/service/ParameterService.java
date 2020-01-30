@@ -1,5 +1,6 @@
 package com.gjozef.devicesservice.service;
 
+import com.gjozef.devicesservice.domain.Parameter;
 import com.gjozef.devicesservice.dto.request.ParameterRequestDTO;
 import com.gjozef.devicesservice.dto.response.ParameterDTO;
 import com.gjozef.devicesservice.dto.response.ParameterListDTO;
@@ -14,4 +15,6 @@ public interface ParameterService {
     ParameterDTO editParameter(Long parameterId, ParameterRequestDTO requestDTO);
 
     void deleteParameter(Long parameterId);
+
+    Parameter fetchParameter(Long parameterId);
 }

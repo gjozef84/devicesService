@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    Optional<Comment> findByIdAndDeviceIdAndActiveTrue(Long deviceId, Long commentId);
+    Optional<Comment> findByIdAndDeviceIdAndActiveTrue(Long commentId, Long deviceId);
 
-    List<Comment> findAllByDeviceIdAndActiveTrue();
+    List<Comment> findAllByDeviceIdAndActiveTrue(Long deviceId);
 }

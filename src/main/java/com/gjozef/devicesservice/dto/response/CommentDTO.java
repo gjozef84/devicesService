@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDTO implements AbstractDTO {
+    private Long id;
     private String content;
     private DeviceDTO deviceDTO;
 }

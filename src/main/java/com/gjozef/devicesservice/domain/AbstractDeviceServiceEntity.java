@@ -31,7 +31,7 @@ public abstract class AbstractDeviceServiceEntity implements Serializable, Persi
     private Long id;
 
     @CreatedDate
-    @Column(name = "crated_at", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
     @CreatedBy

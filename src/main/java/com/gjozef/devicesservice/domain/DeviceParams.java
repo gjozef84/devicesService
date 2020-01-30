@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -26,4 +27,7 @@ public class DeviceParams extends AbstractDeviceServiceEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_parameter")
     private Parameter parameter;
+
+    @Column(name = "value", nullable = false)
+    private String value;
 }

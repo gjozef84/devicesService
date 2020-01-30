@@ -32,10 +32,11 @@ class DeviceRequestDTOAssemblerTest {
     @Test
     public void toDomain() {
         DeviceCategory deviceCategory = new DeviceCategory("deviceCategoryDTO");
-        DeviceCategoryDTO deviceCategoryDTO = new DeviceCategoryDTO(deviceCategory.getName());
-        DeviceRequestDTO dto = new DeviceRequestDTO("deviceName", deviceCategoryDTO, DeviceStatus.SPRAWNY);
+        deviceCategory.setId(5L);
+        DeviceCategoryDTO deviceCategoryDTO = new DeviceCategoryDTO(deviceCategory.getId(), deviceCategory.getName());
+        DeviceRequestDTO dto = new DeviceRequestDTO("deviceName", "description", deviceCategoryDTO, DeviceStatus.SPRAWNY);
         Device domain = new Device();
-        Device expected = new Device(dto.getName(), deviceCategory, dto.getDeviceStatus());
+        Device expected = new Device(dto.getName(), dto.getDescription(), deviceCategory, dto.getDeviceStatus());
         when(deviceCategoryDTOAssembler.toDomain(deviceCategoryDTO)).thenReturn(deviceCategory);
 
         deviceRequestDTOAssembler.fillInDomain(dto, domain);

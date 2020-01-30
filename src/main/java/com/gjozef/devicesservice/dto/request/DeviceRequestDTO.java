@@ -16,6 +16,8 @@ public class DeviceRequestDTO implements AbstractDTO {
     @NotBlank
     @Size(max = 200)
     private String name;
+    @Size(max = 500)
+    private String description;
     @NotNull
     private DeviceCategoryDTO deviceCategory;
     private DeviceStatus deviceStatus;

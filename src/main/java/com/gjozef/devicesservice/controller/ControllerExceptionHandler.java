@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @Slf4j
 public class ControllerExceptionHandler {
 
-    @ExceptionHandler( {ResourceNotFoundException.class})
+    @ExceptionHandler({ResourceNotFoundException.class})
     public ResponseEntity<ResourceExceptionDTO> resourceNotFoundExceptionHandler(ResourceNotFoundException rnfe) {
         log.error(rnfe.getMessage(), rnfe);
         ResourceExceptionDTO dto = new ResourceExceptionDTO(rnfe.getObjectName(), rnfe.getPropertyName(), rnfe.getPropertyValue());
         return new ResponseEntity<>(dto, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler( {ResourceAlreadyExistsException.class})
+    @ExceptionHandler({ResourceAlreadyExistsException.class})
     public ResponseEntity<ResourceExceptionDTO> applicationExceptionHandler(ResourceAlreadyExistsException raee) {
         log.error(raee.getMessage(), raee);
         ResourceExceptionDTO dto = new ResourceExceptionDTO(raee.getObjectName(), raee.getPropertyName(), raee.getPropertyValue());

@@ -14,6 +14,7 @@ public class CommentDTOAssembler extends AbstractDomainToDTOAssembler<Comment, C
 
     @Override
     protected void fillInDto(Comment domain, CommentDTO dto) {
+        dto.setId(domain.getId());
         dto.setContent(domain.getContent());
         DeviceDTO deviceDTO = deviceDTOAssembler.fromDomain(domain.getDevice());
         dto.setDeviceDTO(deviceDTO);
