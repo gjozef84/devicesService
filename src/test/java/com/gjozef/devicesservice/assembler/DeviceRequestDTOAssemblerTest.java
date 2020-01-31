@@ -30,7 +30,21 @@ class DeviceRequestDTOAssemblerTest {
     }
 
     @Test
-    public void toDomain() {
+    public void testToDomain() {
+        DeviceCategory deviceCategory = new DeviceCategory("deviceCategoryDTO");
+        deviceCategory.setId(1L);
+        DeviceCategoryDTO deviceCategoryDTO = new DeviceCategoryDTO(deviceCategory.getId(), deviceCategory.getName());
+        DeviceRequestDTO dto = new DeviceRequestDTO("deviceName", "description", deviceCategoryDTO, DeviceStatus.SPRAWNY);
+        Device expected = new Device(dto.getName(), dto.getDescription(), deviceCategory, dto.getDeviceStatus());
+        when(deviceCategoryDTOAssembler.toDomain(deviceCategoryDTO)).thenReturn(deviceCategory);
+
+        Device actual = deviceRequestDTOAssembler.toDomain(dto);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFillInDomain(){
         DeviceCategory deviceCategory = new DeviceCategory("deviceCategoryDTO");
         deviceCategory.setId(5L);
         DeviceCategoryDTO deviceCategoryDTO = new DeviceCategoryDTO(deviceCategory.getId(), deviceCategory.getName());

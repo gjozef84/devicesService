@@ -32,7 +32,7 @@ public interface DeviceCategoryControllerSwagger {
         @ApiResponse(code = 200, message = "Success", response = DeviceCategoryListDTO.class),
         @ApiResponse(code = 401, message = "In case of unauthorized access"),
         @ApiResponse(code = 500, message = "In case of any exception")})
-    ResponseEntity<DeviceCategoryListDTO> getAllCategory();
+    ResponseEntity<DeviceCategoryListDTO> getAllCategories();
 
     @ApiOperation(value = "Create new device category for given requestDTO",
         response = DeviceCategoryDTO.class,

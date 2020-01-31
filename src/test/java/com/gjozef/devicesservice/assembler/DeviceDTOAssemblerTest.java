@@ -28,14 +28,17 @@ public class DeviceDTOAssemblerTest {
     }
 
     @Test
-    public void fillInDto() {
+    public void testFillInDto() {
         DeviceCategory deviceCategory = new DeviceCategory("name");
         deviceCategory.setId(1L);
         Device domain = new Device("name", "decription", deviceCategory, DeviceStatus.SPRAWNY);
         domain.setId(1L);
+        DeviceDTO dto = new DeviceDTO();
         DeviceDTO expected = new DeviceDTO(domain.getId(), domain.getName(), domain.getDescription(), null, domain.getDeviceStatus());
 
-        assertEquals(expected, deviceDTOAssembler.fromDomain(domain));
+        deviceDTOAssembler.fillInDto(domain, dto);
+
+        assertEquals(expected, dto);
     }
 
     @Test
