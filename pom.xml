@@ -122,7 +122,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M2</version>
                 <configuration>
-                    <skipTests>${skipUnitTests}</skipTests>
+                    <skipTests>${skipTests}</skipTests>
                     <runOrder>alphabetical</runOrder>
                 </configuration>
             </plugin>
@@ -132,9 +132,10 @@
                 <version>0.8.5</version>
                 <configuration>
                     <outputDirectory>target/jacoco-report</outputDirectory>
-                    <skip>${skipUnitTests}</skip>
+                    <skip>${skipTests}</skip>
                     <excludes>
                         <!-- excludes class -->
+                        <exclude>**/*Application.*</exclude>
                         <exclude>com/gjozef/devicesservice/dto/**/*</exclude>
                         <exclude>com/gjozef/devicesservice/domain/**</exclude>
                         <exclude>com/gjozef/devicesservice/config/**</exclude>
@@ -231,7 +232,13 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <skipTests>false</skipTests>
+                <skipTests>true</skipTests>
+            </properties>
+        </profile>
+        <profile>
+            <id>unit-tests</id>
+            <properties>
+                <skipTests>true</skipTests>
             </properties>
         </profile>
     </profiles>

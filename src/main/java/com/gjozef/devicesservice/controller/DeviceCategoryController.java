@@ -33,9 +33,8 @@ public class DeviceCategoryController implements DeviceCategoryControllerSwagger
 
     @Override
     @GetMapping(value = "/all")
-    public ResponseEntity<DeviceCategoryListDTO> getAllCategory() {
-        deviceCategoryService.getAllCategories();
-        return ResponseEntity.ok().build();
+    public ResponseEntity<DeviceCategoryListDTO> getAllCategories() {
+        return new ResponseEntity<>(deviceCategoryService.getAllCategories(), HttpStatus.OK);
     }
 
     @Override

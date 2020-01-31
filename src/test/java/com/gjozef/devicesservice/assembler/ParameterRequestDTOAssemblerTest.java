@@ -20,7 +20,7 @@ class ParameterRequestDTOAssemblerTest {
     }
 
     @Test
-    void fillInDomain() {
+    void testFillInDomain() {
         ParameterRequestDTO dto = new ParameterRequestDTO("paramName");
         Parameter actual = new Parameter();
         Parameter expected = new Parameter(dto.getName());

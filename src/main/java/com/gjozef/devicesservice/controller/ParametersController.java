@@ -37,8 +37,7 @@ public class ParametersController implements ParametersControllerSwagger {
     @Override
     @GetMapping(value = "/all")
     public ResponseEntity<ParameterListDTO> getAllParameters() {
-        parameterService.getAllParameters();
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(parameterService.getAllParameters(), HttpStatus.OK);
     }
 
     @Override
